@@ -144,6 +144,14 @@ class Library {
         newHistory[history.length] = h;
         return newHistory;
     }
+    
+    void searchBook(String bookName) {
+    	for(Book book : books) {
+    		if(book.name.toUpperCase().contains(bookName.toUpperCase())) {
+    			System.out.println (book.id + " " + book.name + " " + book.stock);
+    		}
+    	}
+    }
 }
 
 // Create the following methods in the TestLibrary class. Test all the functionalities.
@@ -165,7 +173,8 @@ public class BookMgm {
             System.out.println("5. List all books");
             System.out.println("6. List all history");
             System.out.println("7. List all history between two dates");
-            System.out.println("8. Exit");
+            System.out.println("8. Enter the book name you want to search");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -245,6 +254,11 @@ public class BookMgm {
                     System.out.println("______________________________");
                     break;
                 case 8:
+                	 System.out.println("Enter the book name you want to search");
+                	 String bookName = scanner.nextLine();
+                	 library.searchBook(bookName);
+                	 break;
+                case 9:
                     System.exit(0);
             }
         }
@@ -253,5 +267,6 @@ public class BookMgm {
     public static void addBooks(Library library) {
     	library.updateBookStock("JAVA", 1);
         library.updateBookStock("OOPS", 4);
+        library.updateBookStock("JAVA For Beginners", 2);
     }
 }
