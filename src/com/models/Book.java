@@ -10,6 +10,7 @@ public class Book {
         this.id = id;
         this.name = name;
         this.stock = stock;
+        System.out.println("Testing");
     }
 
 }
