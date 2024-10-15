@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.controllers.LibraryController;
 import com.models.Book;
 import com.models.History;
+import com.models.Newspaper;
 
 // Create the following methods in the TestLibrary class. Test all the functionalities.
 
@@ -14,9 +15,17 @@ public class BookMgm {
     public static void main(String[] args) {
         Book[] books = new Book[0];
         History[] history = new History[0];
-        LibraryController library = new LibraryController(books, history);
+        Newspaper[] newspapers = new Newspaper[3];
+        newspapers[0] = new Newspaper(1, "Danik", "Hindi", 10);
+        newspapers[1] = new Newspaper(2, "Danik", "English", 10);
+        newspapers[2] = new Newspaper(3, "Lok", "Hindi", 5);
+        
+        LibraryController library = new LibraryController(books, history, newspapers);
+        
         
         addBooks(library);
+        
+//        addNewspaper(library);
         
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -24,10 +33,10 @@ public class BookMgm {
             System.out.println("2. Borrow a book");
             System.out.println("3. Return a book");
             System.out.println("4. Update the stock of a book");
-            System.out.println("5. List all books");
+            System.out.println("5. List all books and newspapers");
             System.out.println("6. List all history");
             System.out.println("7. List all history between two dates");
-            System.out.println("8. Enter the book name you want to search");
+            System.out.println("8. Enter the book name or newspaper you want to search");
             System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -90,7 +99,7 @@ public class BookMgm {
                     String answer = scanner.nextLine();
                     boolean haveStockInfo = answer.equals("y");
                     System.out.println("______________________________");
-                    library.listAllBooks(haveStockInfo);
+                    library.listAllBooksAndNewspaper(haveStockInfo);
                     System.out.println("______________________________");
                     break;
                 case 6:
@@ -108,9 +117,9 @@ public class BookMgm {
                     System.out.println("______________________________");
                     break;
                 case 8:
-                	 System.out.println("Enter the book name you want to search");
-                	 String bookName = scanner.nextLine();
-                	 library.searchBook(bookName);
+                	 System.out.println("Enter the book name or newspaper you want to search");
+                	 String name1 = scanner.nextLine();
+                	 library.searchBook(name1);
                 	 break;
                 case 9:
                     System.exit(0);
@@ -123,4 +132,8 @@ public class BookMgm {
         library.updateBookStock("OOPS", 4);
         library.updateBookStock("JAVA For Beginners", 2);
     }
+    
+//    public static void addNewspaper(LibraryController library) {
+//    	
+//    }
 }
