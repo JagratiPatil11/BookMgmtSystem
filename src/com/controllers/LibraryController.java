@@ -2,16 +2,19 @@ package com.controllers;
 
 import com.models.Book;
 import com.models.History;
+import com.models.Newspaper;
 import com.views.BookView;
 
 public class LibraryController {
 
     Book[] books;
     History[] history;
+    Newspaper[] newspapers;
 
-    public LibraryController(Book[] books, History[] history) {
+    public LibraryController(Book[] books, History[] history, Newspaper[] newspapers) {
         this.books = books;
         this.history = history;
+        this.newspapers = newspapers;
     }
 
     public void listAllHistory(String fromDate, String toDate) {
@@ -76,15 +79,26 @@ public class LibraryController {
 		        return newBooks;
 		    }
 		 
-		 public void searchBook(String bookName) {
+		 public void searchBook(String name) {
 		    	for(Book book : books) {
-		    		if(book.name.toUpperCase().contains(bookName.toUpperCase())) {
+		    		if(book.name.toUpperCase().contains(name.toUpperCase())) {
 		    			System.out.println (book.id + " " + book.name + " " + book.stock);
+		    		}
+		    	}
+		    	for(Newspaper newspaper : newspapers) {
+		    		if(newspaper.newspaperName.toUpperCase().contains(name.toUpperCase())) {
+		    			System.out.println (newspaper.newspaperId + " " + newspaper.newspaperName +
+		    					" " + newspaper.language + " " + newspaper.newspaperStock);
 		    		}
 		    	}
 		    }
 		 
-		 public void listAllBooks(boolean haveStockInfo) {
+		 public void listAllBooksAndNewspaper(boolean haveStockInfo) {
+			 
+			 // books[], newpapaer[]
+			 ArrayList<>
+			 
+			 
 		        for (Book book : books) {
 		            if (haveStockInfo) {
 		            	new BookView().display(book);
@@ -92,6 +106,10 @@ public class LibraryController {
 		                System.out.println("Book ID: " + book.id);
 		                System.out.println("Book Name: " + book.name);
 		            }
+		        }
+		        
+		        for (Newspaper newspaper : newspapers) {
+		        	new Newspaper().display(newspaper);
 		        }
 		    }
 	 
